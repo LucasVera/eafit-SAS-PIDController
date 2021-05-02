@@ -158,7 +158,10 @@ void handleGetState() {
   Serial.println("Reportando datos por wifi");
   String message = ""
   message += "{"
-  server.send(200, "text/plain", "hello from esp8266!");
+  message += "\"temperature\": " + String(T_input, 4) + ","
+  message += "\"humidity\": " + String(H_input, 4)
+  message += "}"
+  server.send(200, "application/json", message);
   digitalWrite(LED_BUILTIN, LOW);
 }
 
